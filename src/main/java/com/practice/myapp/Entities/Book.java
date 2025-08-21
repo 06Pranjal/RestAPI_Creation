@@ -54,5 +54,15 @@ public class Book {
     public String toString() {
         return "Book [id=" + id + ", title=" + title + ", author=" + author + "]";
     }
+
+    public Book orElse(Object object) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'orElse'");
+    }
+
+    public Book map(Object object) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'map'");
+    }
     
 }
