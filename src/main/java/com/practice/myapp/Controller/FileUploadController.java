@@ -7,6 +7,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
+
 import com.practice.myapp.MyappApplication;
 import com.practice.myapp.helper.FileUploadHelper;
 
@@ -36,7 +38,7 @@ public class FileUploadController {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Request Must contain file");
         }
 
-        if(file.getContentType().equals("image/jpg")){
+        if(file.getContentType().equals("image/jpeg")){
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Only Jpeg allowed");
         }
 
@@ -44,7 +46,9 @@ public class FileUploadController {
 
         boolean f=fileUploadHelper.uploadFile(file);
         if(f){
-            return ResponseEntity.ok("File uploaded Succesfully");
+            //return ResponseEntity.ok("File uploaded Succesfully");
+
+            return ResponseEntity.ok(ServletUriComponentsBuilder.fromCurrentContextPath().path("/image/").path(file.getOriginalFilename()).toUriString());
         }
 
 
