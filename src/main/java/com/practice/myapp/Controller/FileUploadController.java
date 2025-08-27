@@ -38,8 +38,8 @@ public class FileUploadController {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Request Must contain file");
         }
 
-        if(file.getContentType().equals("image/jpeg")){
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Only Jpeg allowed");
+        if(!file.getContentType().equals("image/jpeg")){
+            return ResponseEntity.status(HttpStatus.UNSUPPORTED_MEDIA_TYPE).body("Only Jpeg allowed");
         }
 
         //file upload code..
